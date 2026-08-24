@@ -1,123 +1,639 @@
 :root {
   color-scheme: light;
+
   --navy: #123652;
   --blue: #1f4e78;
   --accent: #1677c8;
   --accent-soft: #eaf5ff;
+
   --ink: #17212b;
   --muted: #637282;
   --border: #d9e2ea;
   --surface: #ffffff;
   --background: #f4f7fa;
+
   --success: #127044;
   --success-bg: #eaf8f0;
+
   --warning: #8a5b00;
   --warning-bg: #fff7df;
+
   --shadow: 0 12px 36px rgba(22, 54, 82, 0.08);
 }
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  background: linear-gradient(180deg, #edf5fb 0, var(--background) 260px);
-  color: var(--ink);
-  font-family: "Segoe UI", "Microsoft JhengHei", system-ui, sans-serif;
-}
-button, input { font: inherit; }
-.container { width: min(880px, calc(100% - 32px)); margin: 48px auto 28px; }
-.hero { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: 28px; }
-.eyebrow { margin: 0 0 8px; color: var(--accent); font-size: 12px; font-weight: 800; letter-spacing: .16em; }
-h1 { margin: 0; color: var(--navy); font-size: clamp(30px, 5vw, 46px); line-height: 1.1; }
-.subtitle { max-width: 700px; margin: 14px 0 0; color: var(--muted); line-height: 1.7; }
-.privacy-badge { flex: 0 0 auto; padding: 8px 12px; border: 1px solid #b8dbc9; border-radius: 999px; background: #effaf4; color: var(--success); font-size: 13px; font-weight: 700; }
-.panel { margin: 18px 0; padding: 26px; border: 1px solid rgba(217,226,234,.9); border-radius: 18px; background: var(--surface); box-shadow: var(--shadow); }
-.panel.compact { padding-block: 22px; }
-.section-heading, .section-heading > div { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.section-heading { margin-bottom: 20px; }
-.step { display: inline-grid; width: 30px; height: 30px; place-items: center; border-radius: 50%; background: var(--blue); color: white; font-weight: 800; }
-h2 { margin: 0; color: var(--navy); font-size: 21px; }
-.drop-zone { padding: 38px 24px; border: 2px dashed #a9bfd1; border-radius: 15px; background: #f9fcff; text-align: center; transition: .2s ease; cursor: pointer; }
-.drop-zone:hover, .drop-zone:focus, .drop-zone.dragover { outline: none; border-color: var(--accent); background: var(--accent-soft); transform: translateY(-1px); }
-.upload-icon { width: 48px; height: 48px; margin: 0 auto 13px; border-radius: 14px; background: var(--accent-soft); color: var(--accent); font-size: 30px; font-weight: 500; line-height: 43px; }
-.drop-title { margin: 0 0 5px; font-size: 18px; font-weight: 750; }
-.muted { color: var(--muted); }
-.actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
-.button { border: 0; border-radius: 10px; padding: 11px 18px; font-weight: 750; cursor: pointer; transition: .15s ease; }
-.button:hover:not(:disabled) { transform: translateY(-1px); filter: brightness(.98); }
-.button:disabled { cursor: not-allowed; opacity: .48; }
-.button.secondary { border: 1px solid #b9c9d6; background: white; color: var(--navy); }
-.button.primary { background: var(--blue); color: white; box-shadow: 0 8px 18px rgba(31,78,120,.18); }
-.button.full { width: 100%; min-height: 48px; }
-.text-button { border: 0; background: transparent; color: var(--accent); cursor: pointer; }
-.text-button:disabled { color: #9aa7b3; cursor: not-allowed; }
-.file-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: 18px; overflow: hidden; border: 1px solid var(--border); border-radius: 12px; background: var(--border); }
-.file-summary > div { padding: 14px; background: #fbfdff; text-align: center; }
-.file-summary strong { display: block; color: var(--navy); font-size: 20px; }
-.file-summary span { color: var(--muted); font-size: 13px; }
-.file-list { max-height: 200px; margin: 12px 0 0; padding: 0; overflow: auto; list-style: none; }
-.file-list li { display: flex; justify-content: space-between; gap: 15px; padding: 9px 4px; border-bottom: 1px solid #edf1f4; font-size: 14px; }
-.file-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.file-size { flex: 0 0 auto; color: var(--muted); }
-.progress-wrap { margin-top: 18px; }
-.progress-track { height: 8px; overflow: hidden; border-radius: 99px; background: #e7edf2; }
-.progress-bar { width: 0; height: 100%; background: var(--accent); transition: width .15s ease; }
-.progress-wrap p { margin: 8px 0 0; font-size: 13px; }
-.result-box { margin-top: 16px; padding: 14px 16px; border-radius: 11px; line-height: 1.6; }
-.result-box.success { background: var(--success-bg); color: var(--success); }
-.result-box.warning { background: var(--warning-bg); color: var(--warning); }
-.result-box.error { background: #fff0f0; color: #a52a2a; }
-.rules { margin: 15px 0 0; padding-left: 22px; color: #465463; line-height: 1.8; }
-code { padding: 2px 5px; border-radius: 5px; background: #edf2f6; color: #234b69; }
-.hidden { display: none !important; }
-footer { padding: 14px 20px 28px; color: #81909d; text-align: center; font-size: 13px; }
-@media (max-width: 620px) {
-  .container { width: min(100% - 22px, 880px); margin-top: 28px; }
-  .hero { display: block; }
-  .privacy-badge { display: inline-block; margin-top: 16px; }
-  .panel { padding: 18px; border-radius: 14px; }
-  .drop-zone { padding: 28px 14px; }
-  .actions .button { width: 100%; }
-}
-/* 貓咪狗狗背景：將這段加到 styles.css 最下方 */
-body {
-  background-image:
-    linear-gradient(rgba(244, 247, 250, 0.72), rgba(244, 247, 250, 0.72)),
-    url("pet-background.jpg");
-  background-size: auto, 760px auto;
-  background-position: center top;
-  background-attachment: fixed;
+
+
+/* ========================================
+   基本設定
+======================================== */
+
+* {
+  box-sizing: border-box;
 }
 
-/* 讓主要內容在花色背景上仍保持清楚 */
+html {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+
+  color: var(--ink);
+
+  font-family:
+    "Segoe UI",
+    "Microsoft JhengHei",
+    system-ui,
+    sans-serif;
+
+  /*
+    貓咪狗狗背景
+    上方的半透明白色圖層可避免背景影響文字閱讀
+  */
+  background-color: var(--background);
+
+  background-image:
+    linear-gradient(
+      rgba(244, 247, 250, 0.72),
+      rgba(244, 247, 250, 0.72)
+    ),
+    url("pet-background.jpg");
+
+  background-size:
+    auto,
+    760px auto;
+
+  background-position:
+    center top,
+    center top;
+
+  background-repeat:
+    repeat,
+    repeat;
+
+  background-attachment:
+    fixed,
+    fixed;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+
+/* ========================================
+   主要內容範圍
+======================================== */
+
+.container {
+  width: min(880px, calc(100% - 32px));
+  margin: 48px auto 28px;
+}
+
+
+/* ========================================
+   網頁標題區域
+======================================== */
+
 .hero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+
+  margin-bottom: 28px;
   padding: 22px 24px;
+
   border: 1px solid rgba(255, 255, 255, 0.8);
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.88);
-  box-shadow: 0 12px 36px rgba(22, 54, 82, 0.10);
+
+  background: rgba(255, 255, 255, 0.90);
+
+  box-shadow:
+    0 12px 36px rgba(22, 54, 82, 0.10);
+
   backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
-.panel {
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(5px);
+.eyebrow {
+  margin: 0 0 8px;
+
+  color: var(--accent);
+
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
 }
+
+h1 {
+  margin: 0;
+
+  color: var(--navy);
+
+  font-size: clamp(30px, 5vw, 46px);
+  line-height: 1.1;
+}
+
+.subtitle {
+  max-width: 700px;
+  margin: 14px 0 0;
+
+  color: var(--muted);
+
+  line-height: 1.7;
+}
+
+.privacy-badge {
+  flex: 0 0 auto;
+
+  padding: 8px 12px;
+
+  border: 1px solid #b8dbc9;
+  border-radius: 999px;
+
+  background: #effaf4;
+  color: var(--success);
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+
+/* ========================================
+   主要面板
+======================================== */
+
+.panel {
+  margin: 18px 0;
+  padding: 26px;
+
+  border: 1px solid rgba(217, 226, 234, 0.9);
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.95);
+
+  box-shadow: var(--shadow);
+
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.panel.compact {
+  padding-block: 22px;
+}
+
+
+/* ========================================
+   區塊標題
+======================================== */
+
+.section-heading,
+.section-heading > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.section-heading {
+  margin-bottom: 20px;
+}
+
+.step {
+  display: inline-grid;
+  width: 30px;
+  height: 30px;
+
+  place-items: center;
+
+  border-radius: 50%;
+
+  background: var(--blue);
+  color: white;
+
+  font-weight: 800;
+}
+
+h2 {
+  margin: 0;
+
+  color: var(--navy);
+
+  font-size: 21px;
+}
+
+
+/* ========================================
+   檔案上傳區域
+======================================== */
+
+.drop-zone {
+  padding: 38px 24px;
+
+  border: 2px dashed #a9bfd1;
+  border-radius: 15px;
+
+  background: rgba(249, 252, 255, 0.94);
+
+  text-align: center;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.drop-zone:hover,
+.drop-zone:focus,
+.drop-zone.dragover {
+  outline: none;
+
+  border-color: var(--accent);
+
+  background: var(--accent-soft);
+
+  transform: translateY(-1px);
+}
+
+.upload-icon {
+  width: 48px;
+  height: 48px;
+
+  margin: 0 auto 13px;
+
+  border-radius: 14px;
+
+  background: var(--accent-soft);
+  color: var(--accent);
+
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 43px;
+}
+
+.drop-title {
+  margin: 0 0 5px;
+
+  font-size: 18px;
+  font-weight: 750;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+
+/* ========================================
+   按鈕
+======================================== */
+
+.actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  margin-top: 20px;
+}
+
+.button {
+  padding: 11px 18px;
+
+  border: 0;
+  border-radius: 10px;
+
+  font-weight: 750;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    filter 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: brightness(0.98);
+}
+
+.button:focus-visible,
+.text-button:focus-visible {
+  outline: 3px solid rgba(22, 119, 200, 0.28);
+  outline-offset: 3px;
+}
+
+.button:disabled {
+  opacity: 0.48;
+  cursor: not-allowed;
+}
+
+.button.secondary {
+  border: 1px solid #b9c9d6;
+
+  background: white;
+  color: var(--navy);
+}
+
+.button.primary {
+  background: var(--blue);
+  color: white;
+
+  box-shadow:
+    0 8px 18px rgba(31, 78, 120, 0.18);
+}
+
+.button.full {
+  width: 100%;
+  min-height: 48px;
+}
+
+.text-button {
+  padding: 6px;
+
+  border: 0;
+
+  background: transparent;
+  color: var(--accent);
+
+  cursor: pointer;
+}
+
+.text-button:disabled {
+  color: #9aa7b3;
+
+  cursor: not-allowed;
+}
+
+
+/* ========================================
+   選擇檔案後的摘要
+======================================== */
+
+.file-summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+
+  margin-top: 18px;
+
+  overflow: hidden;
+
+  border: 1px solid var(--border);
+  border-radius: 12px;
+
+  background: var(--border);
+}
+
+.file-summary > div {
+  padding: 14px;
+
+  background: rgba(251, 253, 255, 0.98);
+
+  text-align: center;
+}
+
+.file-summary strong {
+  display: block;
+
+  color: var(--navy);
+
+  font-size: 20px;
+}
+
+.file-summary span {
+  color: var(--muted);
+
+  font-size: 13px;
+}
+
+
+/* ========================================
+   檔案清單
+======================================== */
+
+.file-list {
+  max-height: 200px;
+
+  margin: 12px 0 0;
+  padding: 0;
+
+  overflow: auto;
+
+  list-style: none;
+}
+
+.file-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+
+  padding: 9px 4px;
+
+  border-bottom: 1px solid #edf1f4;
+
+  font-size: 14px;
+}
+
+.file-name {
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-size {
+  flex: 0 0 auto;
+
+  color: var(--muted);
+}
+
+
+/* ========================================
+   處理進度
+======================================== */
+
+.progress-wrap {
+  margin-top: 18px;
+}
+
+.progress-track {
+  height: 8px;
+
+  overflow: hidden;
+
+  border-radius: 99px;
+
+  background: #e7edf2;
+}
+
+.progress-bar {
+  width: 0;
+  height: 100%;
+
+  background: var(--accent);
+
+  transition: width 0.15s ease;
+}
+
+.progress-wrap p {
+  margin: 8px 0 0;
+
+  font-size: 13px;
+}
+
+
+/* ========================================
+   轉換結果訊息
+======================================== */
+
+.result-box {
+  margin-top: 16px;
+  padding: 14px 16px;
+
+  border-radius: 11px;
+
+  line-height: 1.6;
+}
+
+.result-box.success {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+.result-box.warning {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+.result-box.error {
+  background: #fff0f0;
+  color: #a52a2a;
+}
+
+
+/* ========================================
+   轉換規則
+======================================== */
+
+.rules {
+  margin: 15px 0 0;
+  padding-left: 22px;
+
+  color: #465463;
+
+  line-height: 1.8;
+}
+
+code {
+  padding: 2px 5px;
+
+  border-radius: 5px;
+
+  background: #edf2f6;
+  color: #234b69;
+}
+
+
+/* ========================================
+   隱藏元素
+======================================== */
+
+.hidden {
+  display: none !important;
+}
+
+
+/* ========================================
+   網頁最下方
+======================================== */
 
 footer {
   display: table;
+
   margin: 0 auto 22px;
   padding: 8px 16px;
+
+  border: 1px solid rgba(255, 255, 255, 0.75);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.88);
+
+  background: rgba(255, 255, 255, 0.90);
   color: #637282;
+
+  box-shadow:
+    0 6px 20px rgba(22, 54, 82, 0.08);
+
+  font-size: 13px;
+  text-align: center;
+
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
+
+
+/* ========================================
+   手機版
+======================================== */
 
 @media (max-width: 620px) {
   body {
-    background-size: auto, 560px auto;
-    background-attachment: scroll;
+    background-size:
+      auto,
+      560px auto;
+
+    background-attachment:
+      scroll,
+      scroll;
+  }
+
+  .container {
+    width: min(100% - 22px, 880px);
+    margin-top: 28px;
   }
 
   .hero {
+    display: block;
+
     padding: 18px;
+  }
+
+  .privacy-badge {
+    display: inline-block;
+
+    margin-top: 16px;
+  }
+
+  .panel {
+    padding: 18px;
+
+    border-radius: 14px;
+  }
+
+  .drop-zone {
+    padding: 28px 14px;
+  }
+
+  .actions .button {
+    width: 100%;
+  }
+}
+
+
+/* ========================================
+   使用者偏好減少動畫時
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }
