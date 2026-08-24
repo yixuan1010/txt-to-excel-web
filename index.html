@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="將 Laser Scan TXT Log 轉換成 Excel，所有處理都在瀏覽器本機完成。">
+  <title>Laser Scan TXT 轉 Excel</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">TXT TO EXCEL</p>
+        <h1>Laser Scan Log 轉換工具</h1>
+        <p class="subtitle">手動選擇 TXT 檔或整個資料夾，完成後下載 <strong>result.xlsx</strong>。檔案只在瀏覽器中處理，不會上傳到伺服器。</p>
+      </div>
+      <span class="privacy-badge">本機處理</span>
+    </header>
+
+    <section class="panel" aria-labelledby="upload-title">
+      <div class="section-heading">
+        <div>
+          <span class="step">1</span>
+          <h2 id="upload-title">選擇文件</h2>
+        </div>
+        <button id="clearBtn" class="text-button" type="button" disabled>清除</button>
+      </div>
+
+      <div id="dropZone" class="drop-zone" tabindex="0" role="button" aria-label="拖曳或選擇 TXT 檔案">
+        <div class="upload-icon" aria-hidden="true">⇧</div>
+        <p class="drop-title">將 TXT 檔拖曳到這裡</p>
+        <p class="muted">可一次選擇多個檔案，也可選擇包含子資料夾的整個資料夾</p>
+        <div class="actions">
+          <button id="fileBtn" class="button secondary" type="button">選擇 TXT 檔</button>
+          <button id="folderBtn" class="button secondary" type="button">選擇資料夾</button>
+        </div>
+      </div>
+      <input id="fileInput" type="file" accept=".txt,text/plain" multiple hidden>
+      <input id="folderInput" type="file" accept=".txt,text/plain" webkitdirectory directory multiple hidden>
+
+      <div id="fileSummary" class="file-summary hidden" aria-live="polite">
+        <div><strong id="fileCount">0</strong><span> 個 TXT 檔</span></div>
+        <div><strong id="totalSize">0 KB</strong><span> 總大小</span></div>
+      </div>
+      <ul id="fileList" class="file-list" aria-label="已選擇的檔案"></ul>
+    </section>
+
+    <section class="panel" aria-labelledby="process-title">
+      <div class="section-heading">
+        <div>
+          <span class="step">2</span>
+          <h2 id="process-title">轉換並下載</h2>
+        </div>
+      </div>
+
+      <button id="convertBtn" class="button primary full" type="button" disabled>轉換並下載 Excel</button>
+      <div id="progressWrap" class="progress-wrap hidden" aria-live="polite">
+        <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+        <p id="progressText" class="muted">準備處理...</p>
+      </div>
+      <div id="resultBox" class="result-box hidden" aria-live="polite"></div>
+    </section>
+
+    <section class="panel compact" aria-labelledby="rules-title">
+      <h2 id="rules-title">轉換規則</h2>
+      <ul class="rules">
+        <li>只擷取相鄰的 <code>Move to scan position...</code> 與 <code>Scan Laser (...)</code>。</li>
+        <li>兩行皆須屬於 <code>Laser Scan Flow</code>。</li>
+        <li>X、Y 保留 1 位小數並直接捨去，Laser Value 保留 3 位小數並直接捨去。</li>
+        <li>資料跨檔案依日期、完整時間、檔名與行號排序。</li>
+        <li>輸出欄位維持原工具格式：Date、Time、Value、cordinate。</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>Laser Scan TXT 轉 Excel</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
