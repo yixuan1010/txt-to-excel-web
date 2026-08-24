@@ -37,4 +37,4 @@
 - GitHub Pages 是靜態網站託管，非常適合此純前端版本。
 
 ## url
-https://yixuan101.github.io/txt-to-excel-web/
+[https://yixuan101.github.io/txt-to-excel-web/](https://yixuan1010.github.io/txt-to-excel-web/)
