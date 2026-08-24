@@ -35,3 +35,6 @@
 - 網頁本身不需要 Python 或後端伺服器。
 - Excel 產生使用 ExcelJS 4.4.0 CDN，因此第一次開啟與轉換時需要網路連線。
 - GitHub Pages 是靜態網站託管，非常適合此純前端版本。
+
+## url
+https://yixuan101.github.io/txt-to-excel-web/
