@@ -77,3 +77,47 @@ footer { padding: 14px 20px 28px; color: #81909d; text-align: center; font-size:
   .drop-zone { padding: 28px 14px; }
   .actions .button { width: 100%; }
 }
+/* 貓咪狗狗背景：將這段加到 styles.css 最下方 */
+body {
+  background-image:
+    linear-gradient(rgba(244, 247, 250, 0.72), rgba(244, 247, 250, 0.72)),
+    url("pet-background.jpg");
+  background-size: auto, 760px auto;
+  background-position: center top;
+  background-attachment: fixed;
+}
+
+/* 讓主要內容在花色背景上仍保持清楚 */
+.hero {
+  padding: 22px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 12px 36px rgba(22, 54, 82, 0.10);
+  backdrop-filter: blur(6px);
+}
+
+.panel {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(5px);
+}
+
+footer {
+  display: table;
+  margin: 0 auto 22px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.88);
+  color: #637282;
+}
+
+@media (max-width: 620px) {
+  body {
+    background-size: auto, 560px auto;
+    background-attachment: scroll;
+  }
+
+  .hero {
+    padding: 18px;
+  }
+}
